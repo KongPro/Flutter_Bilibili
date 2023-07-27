@@ -19,6 +19,7 @@ abstract class BaseRequest {
   // 生成 url
   String url() {
     Uri uri;
+
     var pathStr = path();
 
     // 拼接 路径 和 参数
@@ -36,7 +37,7 @@ abstract class BaseRequest {
     } else {
       uri = Uri.http(authority(), pathStr, params);
     }
-    print('url = ${url.toString()}');
+    print('url = ${uri.toString()}');
     return uri.toString();
   }
 

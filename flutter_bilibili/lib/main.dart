@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bilibili/http/core/hi_net.dart';
+import 'package:flutter_bilibili/http/core/k_error.dart';
+import 'package:flutter_bilibili/http/core/k_net.dart';
 import 'package:flutter_bilibili/http/request/test_request.dart';
 
 void main() {
@@ -52,12 +53,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() async{
+  void _incrementCounter() async {
     TestRequest testReq = TestRequest();
     testReq.add("aaa", "111").add("bbb", "222");
+    try {
+      var res = await KNet.getInstance().fire(testReq);
+      print("请求结果为：${res}");
+    } on LoginError catch(e) {
+      print(e);
+    } on AuthError catch(e) {
+      print(e);
+    } on KNetError catch(e) {
+      print(e);
+    }
 
-    var res = await HiNet.getInstance().fire(testReq);
-    print("请求结果为：${res}");
   }
 
   @override
