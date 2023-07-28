@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async {
     TestRequest testReq = TestRequest();
-    testReq.add("aaa", "111").add("bbb", "222");
+    testReq.add("aaa", "111").add("bbb", "222").add("requestPrams", "must");
     try {
       var res = await KNet.getInstance().fire(testReq);
       print("请求结果为：${res}");

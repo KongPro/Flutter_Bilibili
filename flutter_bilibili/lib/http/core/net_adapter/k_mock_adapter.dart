@@ -1,5 +1,5 @@
 
-import 'package:flutter_bilibili/http/core/k_net_adapter.dart';
+import 'package:flutter_bilibili/http/core/net_adapter/k_net_adapter.dart';
 import 'package:flutter_bilibili/http/request/base_request.dart';
 
 class KMockAdapter implements KNetAdapter {

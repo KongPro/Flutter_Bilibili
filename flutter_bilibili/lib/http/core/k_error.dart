@@ -10,9 +10,8 @@ class AuthError extends KNetError {
 }
 
 class KNetError implements Exception {
-  late final int code;
-  late final String message;
-  late final dynamic data;
-
+  int? code;
+  String message;
+  dynamic data;
   KNetError(this.code, this.message, {this.data});
 }

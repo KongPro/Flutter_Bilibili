@@ -12,14 +12,14 @@ class KNetResponse<T> {
   T data;
   int statusCode;
   BaseRequest? request;
-  String? status;
+  String? statusMessage;
   dynamic extra;
 
   KNetResponse({
     required this.data,
     required this.statusCode,
     this.request,
-    this.status,
+    this.statusMessage,
     this.extra
   });
 
