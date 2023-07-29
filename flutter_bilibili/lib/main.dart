@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bilibili/http/core/k_error.dart';
 import 'package:flutter_bilibili/http/core/k_net.dart';
 import 'package:flutter_bilibili/http/request/test_request.dart';
+
+import 'db/k_cache.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,20 +56,32 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() async {
-    TestRequest testReq = TestRequest();
-    testReq.add("aaa", "111").add("bbb", "222").add("requestPrams", "must");
-    try {
-      var res = await KNet.getInstance().fire(testReq);
-      print("请求结果为：${res}");
-    } on LoginError catch(e) {
-      print(e);
-    } on AuthError catch(e) {
-      print(e);
-    } on KNetError catch(e) {
-      print(e);
-    }
 
+  @override
+  void initState() {
+    super.initState();
+    // KCache.preInit();
+  }
+  void _incrementCounter() async {
+    //
+    KCache.getInstance().setString("aaa", "123");
+    KCache.getInstance().setInt("int", 123);
+    var value = KCache.getInstance().get("aaa");
+    var intValue = KCache.getInstance().get("int");
+    print("value = $value int = $intValue");
+
+    // TestRequest testReq = TestRequest();
+    // testReq.add("aaa", "111").add("bbb", "222").add("requestPrams", "must");
+    // try {
+    //   var res = await KNet.getInstance().fire(testReq);
+    //   print("请求结果为：${res}");
+    // } on LoginError catch(e) {
+    //   print(e);
+    // } on AuthError catch(e) {
+    //   print(e);
+    // } on KNetError catch(e) {
+    //   print(e);
+    // }
   }
 
   @override
